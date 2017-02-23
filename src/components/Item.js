@@ -14,9 +14,15 @@ class Item extends React.Component {
   }
 
   render() {
+    let classes = classnames({
+      item: true,
+      'item--done': this.props.item.done
+    });
 
     return (
-      <div className="item">
+      <div className={classes}>
+        <div>{this.props.item.name}</div>
+        <i className="fa fa-times-circle item__close" aria-hidden="true"></i>
       </div>
     );
   }

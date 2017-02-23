@@ -3,7 +3,7 @@ import './App.scss';
 
 import React from 'react';
 
-import Workspace from './layout/Workspace';
+import Todo from './layout/Todo';
 
 import classnames from 'classnames';
 
@@ -26,7 +26,7 @@ class App extends React.Component {
 
     return (
       <div ref="ringaComponent" className={classes}>
-        <Workspace/>
+        <Todo />
       </div>
     );
   }
