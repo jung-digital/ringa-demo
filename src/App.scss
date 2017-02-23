@@ -23,3 +23,39 @@ body {
 .overflow-hidden {
   overflow: hidden;
 }
+
+.todo {
+  max-width: 600px;
+  margin: auto;
+}
+
+.todo__title {
+  font-size: 64px;
+  color: #eee;
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.todo__input {
+  width: 100%;
+  font-size: 36px;
+  border-radius: 5px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.item {
+  font-size: 28px;
+  background-color: #429dca;
+  margin: 5px 0px;
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  text-align: center;
+}
+
+.item__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
