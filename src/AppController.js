@@ -1,24 +1,22 @@
 import {Controller} from 'ringa';
 
-import TodoModel from './TodoModel';
+import ListModel from './ListModel';
 import ItemModel from './ItemModel';
 
 export default class AppController extends Controller {
-  constructor(name, domNode, options) {
-    super(name, domNode, options);
+  constructor() {
+    super();
 
-    this.addModel(new TodoModel());
+    this.addModel(new ListModel());
 
     // AppController.ADD_ITEM
-    this.addListener('addItem', (todoModel, $ringaEvent) => {
-      let item = new ItemModel($ringaEvent.detail.name);
-      todoModel.pushItem(item);
+    this.addListener('addItem', (listModel, name) => {
+      listModel.pushItem(new ItemModel(name));
     });
 
     // AppController.REMOVE_ITEM
-    this.addListener('removeItem', (todoModel, $ringaEvent) => {
-      let id = $ringaEvent.detail.itemId;
-      todoModel.removeItem(id);
+    this.addListener('removeItem', (listModel, itemId) => {
+      listModel.removeItem(itemId);
     });
   }
 }

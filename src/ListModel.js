@@ -1,8 +1,8 @@
 import {Model} from 'ringa';
 
-export default class TodoModel extends Model {
-  constructor() {
-    super();
+export default class ListModel extends Model {
+  constructor(name) {
+    super(name);
 
     this.addProperty('list', []);
   }

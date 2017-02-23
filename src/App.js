@@ -3,29 +3,27 @@ import './App.scss';
 
 import React from 'react';
 
-import classnames from 'classnames';
-
 import {attach, depend, dependency} from 'react-ringa';
 import {dispatch} from 'ringa';
 
 import AppController from './AppController';
-import TodoModel from './TodoModel';
+import ListModel from './ListModel';
 
 class App extends React.Component {
   constructor() {
     super();
 
     attach(this, new AppController());
-    depend(this, dependency(TodoModel, 'list'));
+    depend(this, dependency(ListModel, 'list'));
 
     this.inputKeyUpHandler = this.inputKeyUpHandler.bind(this);
     this.itemClickHandler = this.itemClickHandler.bind(this);
   }
 
-  addItem() {
+  addItem(value) {
     dispatch(AppController.ADD_ITEM, 
       {
-        name: this.refs.newItem.value
+        name: value
       }, this.refs.ringaComponent);
   }
 
@@ -41,12 +39,12 @@ class App extends React.Component {
       <div ref="ringaComponent" className="app">
         <div className="todo">
           <div className="todo__title">todo</div>
-          <input ref="newItem" className="todo__input" defaultValue={this.state.inputValue} onKeyUp={this.inputKeyUpHandler}  />
+          <input ref="newItem" className="todo__input" onKeyUp={this.inputKeyUpHandler}  />
 
           <div className="list">
             {this.state.list.map(item => 
-              <div className="item" key={item.id} onClick={this.itemClickHandler.bind(this, item.id)} >
-                <div>{item.name}</div>
+              <div className="item" key={item.id} onClick={this.itemClickHandler.bind(this, item.id)}>
+                {item.name}
               </div>)}
           </div>
         </div>
@@ -56,7 +54,8 @@ class App extends React.Component {
 
   inputKeyUpHandler(event) {
     if (event.key === 'Enter') {
-      this.addItem();
+      this.addItem(this.refs.newItem.value);
+      this.refs.newItem.value = '';
     }
   }
 
